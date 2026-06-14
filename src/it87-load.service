@@ -1,0 +1,15 @@
+[Unit]
+Description=Build and load it87 (IT8613E) fan control driver
+# Run before CoolerControl so the fans exist when it applies its profiles.
+# Harmless if coolercontrold is not installed.
+Before=coolercontrold.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/it87-load.sh
+# Generous timeout: the first boot after a kernel update compiles the module.
+TimeoutStartSec=600
+
+[Install]
+WantedBy=multi-user.target
