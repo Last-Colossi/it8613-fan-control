@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <AssemblyName>FanControl.IT8613</AssemblyName>
+    <RootNamespace>FanControl.IT8613</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <!-- Plugin is loaded by FanControl; don't pull a runtime/deps graph into the Plugins folder. -->
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Provided by the FanControl host at runtime; do not copy locally. -->
+    <Reference Include="FanControl.Plugins">
+      <HintPath>C:\Program Files (x86)\FanControl\FanControl.Plugins.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- namazso/PawnIO signed LPC I/O module, extracted from LibreHardwareMonitorLib 0.9.6. -->
+    <EmbeddedResource Include="LpcIO.bin">
+      <LogicalName>FanControl.IT8613.LpcIO.bin</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

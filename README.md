@@ -97,6 +97,14 @@ firmware control on the next boot.
 | `/etc/systemd/system/it87-load.service` | runs the loader at boot |
 | `/etc/modprobe.d/it87.conf` | `force_id=0x8620` mainline fallback |
 
+## Windows
+
+If you dual-boot Windows, the same board has a different problem: the IT8613's
+embedded controller hard-owns the CPU fan (Fan4) channel and overrides software,
+so the fan spikes under load. A **FanControl plugin** that works around this (by
+flattening the EC's own SmartGuardian curve) lives in [`windows/`](windows/) —
+see [`windows/README.md`](windows/README.md).
+
 ## Credits
 
 - Driver: [frankcrawford/it87](https://github.com/frankcrawford/it87)
